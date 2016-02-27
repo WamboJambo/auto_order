@@ -26,9 +26,20 @@ a:hover {
 }
 
 .accountInfoOption:hover {
-    background-color: #009900 !important;
+    background-color: #5517da !important;
     color: #eee;
     cursor: pointer;
+}
+
+.account-settings {
+    min-width: 300px;
+    width: 60%;
+}
+
+.account-settings-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
 }
 
 .alert-incorrect {
@@ -39,4 +50,29 @@ a:hover {
 
 body {
     background: url(../images/bg.png) repeat #ddd;
+}
+
+.nav-tabs>li>a {
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus {
+    background-color: #5517da;
+    color: #fff;
+}
+
+.noAccountLink {
+    color: #5517da;
+}
+
+.noAccountLink:hover {
+    color: #5517da;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.noAccountText {
+    color: #000;
+    margin-top: 1em;
 }

@@ -7,10 +7,13 @@
   <head>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/css/default.css" rel="stylesheet" />
+    <link rel="shortcut icon" href=" /favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/login.js"></script>
     <script type="text/javascript" src="/js/validateEmail.js"></script>
+    <script type="text/javascript" src="/js/bank.js"></script>
   </head>
 
 <nav class="navbar navbar-default navbar-static-top">
@@ -60,7 +63,7 @@
     </div>';
 } else {
       echo '        <li><a href="/pizza">Pizza</a></li>
-	<li><a href="/sandwich">Sandwich</a></li>
+	<li><a href="/sandwich">Sandwich</a></li></ol>
 <ul class="nav navbar-nav navbar-right">';
       echo '<li class="dropdown"><a href="#" class="accountInfo dropdown-toggle" id="accountInfoDropdown" data-toggle="dropdown">' . $_COOKIE["user"] . '<span class="caret"></span></a>
 <ul class="dropdown-menu accountInfoDropdown dropdown-menu-right" aria-labelledby="accountInfoDropdown">

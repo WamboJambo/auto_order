@@ -6,14 +6,18 @@ include_once('connect.php');
 $conn->select_db("ao");
 
 $user = strtolower($_POST["user"]);
-$query = ('SELECT hash, verified FROM users WHERE (uname = "' . $user . '")');
+$query = ('SELECT hash, verified, bank_id FROM users WHERE (uname = "' . $user . '")');
 
 $result = mysqli_query($conn, $query);
 
 while ($row = mysqli_fetch_assoc($result)) {
     $userHash = $row["hash"];
     $veri = $row["verified"];
+    $id = $row["bank_id"];
 }
+
+if ($id != NULL) 
+    $_SESSION['id'] = $id;
 
 
 if ($userHash != crypt($_POST["pass"], $userHash)) {
