@@ -10,7 +10,7 @@ Web app designed to consolidate all parts of delivery services, including orderi
 ---
 
 ### TODO:
-- Make account page, to link Auto Order accounts to their (fake) Capital One bank accounts
+- ~~Make account page, to link Auto Order accounts to their (fake) Capital One bank accounts~~
 - Create some form of API for food services in the area (pizza/sandwich places, etc.)
 - Add extra features (voice menu ordering, TTS, anything to make the UX better)
-- Fix front-end issue (website looks terrible)
+- ~~Fix front-end issue (website looks terrible)~~
