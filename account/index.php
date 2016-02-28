@@ -29,7 +29,7 @@ $(document).ready(function() {
           <p>Here you can change your profile information, such as your display name, and you can tweak available customization options.</p>
           <div class="input-group">
           <input class="form-control" name="uname" placeholder="Enter your desired username" type="text">
-          <span class="input-group-btn"><button class="btn btn-success" type="button">Submit</button></span>
+          <span class="input-group-btn"><button class="btn btn-success" onclick="updateUname()" type="button">Submit</button></span>
           </div>
         </form>
       </div>
@@ -40,13 +40,13 @@ $(document).ready(function() {
           <p>Here you can change account settings, such as your account&apos;s associated email and password.</p>
           <div class="input-group">
           <input class="form-control" name="email" placeholder="Enter your replacement email" type="text">
-          <span class="input-group-btn"><button class="btn btn-success" type="button">Submit</button></span>
+          <span class="input-group-btn"><button class="btn btn-success" onclick="updateEmail()" type="button">Submit</button></span>
           </div>
 <br><br>
           <div class="input-group">
           <input class="form-control" name="pw" placeholder="Enter your new password" type="password">
           <input class="form-control" name="pwconfirm" placeholder="Confirm your new password" type="password">
-          <span class="input-group-btn"><button style="height:120%" class="btn btn-success" type="button">Submit</button></span>
+          <span class="input-group-btn"><button style="height:120%" class="btn btn-success" onclick="updatePass()" type="button">Submit</button></span>
           </div>
         </form>
       </div>

@@ -1,5 +1,12 @@
 <?php
+session_start();
 
+if ($_COOKIE["loggedIn"] != true || !isset($_SESSION['user'])) {
+    $_COOKIE["loggedIn"] = false;
+    unset($_SESSION['user']);
+    if ($_SERVER['REQUEST_URI'] != '/home/') 
+        echo '<script type="text/javascript">window.location.href="http://ao.jamescorsi.com/home/";</script>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +21,7 @@
     <script type="text/javascript" src="/js/login.js"></script>
     <script type="text/javascript" src="/js/validateEmail.js"></script>
     <script type="text/javascript" src="/js/bank.js"></script>
+    <script type="text/javascript" src="/js/methods.js"></script>
   </head>
 
 <nav class="navbar navbar-default navbar-static-top">
@@ -25,7 +33,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/home">Auto Order</a>
+      <a class="navbar-brand" href="/home">AyO! (Auto Order)</a>
     </div>
     
     <div class="collapse navbar-collapse" id="navbar">
@@ -62,8 +70,10 @@
       </div>
     </div>';
 } else {
-      echo '        <li><a href="/pizza">Pizza</a></li>
-	<li><a href="/sandwich">Sandwich</a></li></ol>
+      echo '        <li><a href="/pizza">Pizzas</a></li>
+	<li><a href="/sandwich">Sandwiches</a></li>
+    <li><a href="/asian">Asian</a></li>
+    <li><a href="/dessert">Desserts</a></li></ol>
 <ul class="nav navbar-nav navbar-right">';
       echo '<li class="dropdown"><a href="#" class="accountInfo dropdown-toggle" id="accountInfoDropdown" data-toggle="dropdown">' . $_COOKIE["user"] . '<span class="caret"></span></a>
 <ul class="dropdown-menu accountInfoDropdown dropdown-menu-right" aria-labelledby="accountInfoDropdown">

@@ -27,6 +27,33 @@ if (isset($_POST['todo']) && !empty($_POST['todo'])) {
 }
 
 function createAccount() {
+    include_once('../connect.php');
+    $sql = 'SELECT fname, lname FROM users WHERE uname="' . $_SESSION['user'] . '"';
+
+    $query = $conn->query($sql);
+    $query = $query->fetch_array();
+    
+    $address = $_POST['address'];
+
+    $data = json_encode(array("first_name" => $query['fname'], "last_name" => $query['lname'], "address" => array("street_number" => $address[0], "street_name" => $address[1], "city" => $address[2], "state" => $address[3], "zip" => $address[4])));
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, ($GLOBALS['uri'] . '?key=' . $GLOBALS['api_key']));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($curl, CURLOPT_HEADER, FALSE);
+    curl_setopt($curl, CURLOPT_POST, TRUE);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+    $response = json_decode(curl_exec($curl), true);
+    curl_close($curl);
+
+    if ($response['message'] == "Customer created") {
+        echo 0;
+        $sql = 'UPDATE users SET bank_id="' . $response['objectCreated']['_id'] . '" WHERE uname="' . $_SESSION['user'] . '"';
+        $query = $conn->query($sql);
+    } else {
+        echo $response['message'];
+    }
     
 }
 
@@ -41,7 +68,6 @@ function getAccount() {
         echo 'No account on record';
     } else {
         $url = ($GLOBALS['uri'] . '/' . $query['bank_id'] . '?key=' . $GLOBALS['api_key']);
-        echo $url;
         $response = file_get_contents($url);
         if ($response)
             echo $response;
@@ -51,6 +77,31 @@ function getAccount() {
 }
 
 function updateAccount() {
+    include_once('../connect.php');
+    $sql = 'SELECT bank_id FROM users WHERE uname="' . $_SESSION['user'] . '"';
+
+    $query = $conn->query($sql);
+    $query = $query->fetch_array();
+
+    $address = $_POST['address'];
+
+    $data = json_encode(array("address" => array("street_number" => $address[0], "street_name" => $address[1], "city" => $address[2], "state" => $address[3], "zip" => $address[4])));
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, ($GLOBALS['uri'] . '/' . $query['bank_id'] . '?key=' . $GLOBALS['api_key']));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($curl, CURLOPT_HEADER, FALSE);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+    $response = json_decode(curl_exec($curl), true);
+    curl_close($curl);
+
+    if ($response['message'] == "Accepted customer update") {
+        echo 0;
+    } else {
+        echo $response['message'];
+    }
 
 }
 

@@ -29,7 +29,7 @@ $hash = crypt($userPassword, '$2y$12$' . $salt);
 if ($conn->connect_error)
     die("Connection failed: " . $conn->connect_error); 
 
-$sql = 'INSERT INTO users VALUES ("' . $user . '","' . $email . '","' . $_POST['fname'] . '","' . $_POST['lname'] . '","' . $hash . '", "0")';
+$sql = 'INSERT INTO users VALUES ("' . $user . '", NULL, "' . $email . '","' . $_POST['fname'] . '","' . $_POST['lname'] . '","' . $hash . '", "1")';
 
 if ($conn->query($sql) === TRUE) {
     echo $_POST['fname'] . ' ' . $_POST['lname'] . ' created an account with username ' . $user . '. Thank you for registering with Auto Order! You will be redirected in a few moments; please check for a verification email to your registered email address to continue with account registration. If you do not see the email appear in your inbox, don\'t forget to check your spam messages and contact the <a href="mailto:james@jamesnc.me">webhost</a> if you still cannot find the email.';
